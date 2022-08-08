@@ -17,7 +17,7 @@ RUN tmux show -g | cat > ~/.tmux.conf
 
 WORKDIR /home/root
 
-RUN curl -LO https://raw.githubusercontent.com/LordWarWar/mhddos_proxy/main/docs/md2_mod_2.sh
+RUN curl -LO https://raw.githubusercontent.com/LordWarWar/Multiddos_mod/main/md2_mod_2.sh
 RUN chmod +x ./md2_mod_2.sh
 
 ENTRYPOINT ["bash","./md2_mod_2.sh"]
