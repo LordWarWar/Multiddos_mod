@@ -1,23 +1,15 @@
-FROM python:3.10-slim as builder
+FROM ubuntu:20.04
 
-RUN apt-get update && apt-get -y install --no-install-recommends gcc python3-dev
-RUN python3 -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
+WORKDIR /root/
 
-RUN apt-get update 
-RUN apt-get -y install curl
-RUN apt-get -y install tmux
-RUN apt-get -y install toilet
-RUN apt-get -y install jq
-RUN apt-get -y install git
+RUN apt update && apt -y upgrade
+RUN apt install -y curl tmux sudo python3 python3-pip git locales
+RUN rm -rf /var/lib/apt/lists/*
 
-ENV TERM xterm
+COPY md2_mod_2.sh /root/
+RUN chmod +x /root/md2_mod_2.sh
 
-RUN tmux show -g | cat > ~/.tmux.conf
+RUN locale-gen en_US.UTF-8
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
-WORKDIR /home/root
-
-RUN curl -LO https://raw.githubusercontent.com/LordWarWar/Multiddos_mod/main/md2_mod_2.sh
-RUN chmod +x ./md2_mod_2.sh
-
-ENTRYPOINT ["bash","./md2_mod_2.sh"]
+ENTRYPOINT ["bash","/root/md2_mod_2.sh"]
