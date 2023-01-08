@@ -22,5 +22,3 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: ghcr.io/lordwarwar/miltiddos_mod:latest
-    permissions:
-      packages: read
